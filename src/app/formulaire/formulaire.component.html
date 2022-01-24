@@ -1,0 +1,34 @@
+<div class="container col d-flex justify-content-center">
+    <form #f="ngForm">
+        <!--Propriete qui permet de parcourir les elements de formulaire-->
+        <h3 class="text-center">Formulaire</h3>
+        <!--Login-->
+        <div class="form-group">
+            <label>Login:</label>
+            <input class="form-control" type="text" name="login" ngModel #l="ngModel" required>
+        </div>
+        <div class="alert alert-danger" *ngIf="l.invalid && l.touched">
+            champs Obligatoire
+        </div>
+        <!--Email-->
+        <div class="form-group">
+            <label> Email:</label>
+            <input class="form-control" type="email" name="email" ngModel #e="ngModel" required
+                pattern="[a-z A-Z 0-9]+@[a-z A-Z 0-9]+[.][a-z]{2,4}">
+        </div>
+        <div class="alert alert-danger" *ngIf="e.invalid && e.touched">
+            <div *ngIf= "e.errors.required"> champs invalid </div>
+            <div *ngIf= "e.errors.pattern"> Please! verify your mail </div>
+        </div>
+        <!--Password-->
+        <div class="form-group">
+            <label>Password:</label>
+            <input class="form-control" type="password" name="password" ngModel #p="ngModel" required>
+        </div> <br>
+        <div class="alert alert-danger" *ngIf="p.invalid && p.touched">
+            champs Obligatoire
+        </div>
+        <!--Button-->
+        <button type="submit" class="btn btn-success" [disabled]="f.invalid"> Submit </button>
+    </form>
+</div>
